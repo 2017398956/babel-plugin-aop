@@ -3,6 +3,10 @@ A babel plugin for replacing import's module.
 
 一个用于替换项目中 import 的 babel 插件。
 
+# Installation
+
+    npm install --save-dev babel-plugin-aop
+
 # Usage
 
 add babel-plugin-aop in '.babelrc'.

@@ -23,7 +23,7 @@ export default declare((api, options, dirname) => {
                                 if(source === replaceImport.module){
                                     let delIndex = -1;
                                     p.node.specifiers.forEach((value, index) => {
-                                        if(replaceImport.component === value.imported.name){
+                                        if(replaceImport.component === (value.imported || {name: undefined}).name){
                                             delIndex = index;
                                             return;
                                         }

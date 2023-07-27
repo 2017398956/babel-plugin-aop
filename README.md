@@ -21,6 +21,7 @@ add babel-plugin-aop in '.babelrc'.
     ]
 }
 // A babel plugin for tsconfig paths may help you : https://github.com/tleunen/babel-plugin-module-resolver
+// https://reactnative.dev/docs/typescript#using-custom-path-aliases-with-typescript
 // if it doesn't work in react native, try 'npx react-native start --reset-cache' once and then 'yarn android' works.
 ```
 ### component : 

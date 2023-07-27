@@ -20,8 +20,8 @@ add babel-plugin-aop in '.babelrc'.
         ["aop", {"replaceImports": [{"component": "useTranslation", "module": "react-i18next", "replaceStr": "import useTranslation from '@/utils/i18next/i18n-wrapper';"}]}]
     ]
 }
-
-// if it doesn't work in react native, try 'npx react-native start --reset-cache'
+// A babel plugin for tsconfig paths may help you : https://github.com/tleunen/babel-plugin-module-resolver
+// if it doesn't work in react native, try 'npx react-native start --reset-cache' once and then 'yarn android' works.
 ```
 ### component : 
 

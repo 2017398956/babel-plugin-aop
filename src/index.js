@@ -1,11 +1,21 @@
 import { declare } from '@babel/helper-plugin-utils';
 
+const excludeAopPrefix = 'exclude aop:';
+
 export default declare((api, options, dirname) => {
     api.assertVersion(7);
     return {
         visitor: {
             Program: {
                 enter(path, state) {
+                    const leadingComment = (path.node.body[0].leadingComments || [{value: ''}])[0].value;
+                    let excludeAop = [{component: undefined, module: undefined}];
+                    if(leadingComment.startsWith(excludeAopPrefix)){
+                        excludeAop = JSON.parse(leadingComment.substring(excludeAopPrefix.length));
+                    }else{
+                        excludeAop = undefined;
+                    }
+
                     path.traverse({
                         ImportDeclaration(p) {
                             const source = p.node.source.value;
@@ -18,7 +28,16 @@ export default declare((api, options, dirname) => {
                                             return;
                                         }
                                     });
-                                    if(delIndex > -1){
+                                    let isExcludeP = false;
+                                    if(excludeAop){
+                                        excludeAop.forEach(value => {
+                                            if(value.module === replaceImport.module && value.component === replaceImport.component){
+                                                isExcludeP = true;
+                                                return;
+                                            }
+                                        });
+                                    }
+                                    if(delIndex > -1 && !isExcludeP){
                                         p.node.specifiers.splice(delIndex, 1);
                                         let insertIndex = -1;
                                         path.node.body.forEach((value, index) => {

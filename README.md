@@ -40,6 +40,13 @@ new import statement.
 
 新的引用语句。
 
+# exclude config
+
+add 
+```js
+/*exclude aop:[{"component":"testComponent", "module":"testModule"}]*/
+```
+in your js or ts file.It will be very useful in a wrapped component.
 # Sample code
 
 ```ts

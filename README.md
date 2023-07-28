@@ -12,8 +12,11 @@ A babel plugin for replacing import's module.
 add babel-plugin-aop in '.babelrc'.
 
 在 .babelrc 文件中添加 babel-plugin-aop。
+
+### 1.use tsconfig's compilerOptions.paths:
+
 ```js
-// use tsconfig's compilerOptions.paths:
+
 {
     ...
     "plugins": [
@@ -31,8 +34,18 @@ add babel-plugin-aop in '.babelrc'.
         ]
     ]
 }
+```
+In react native, A babel plugin (https://reactnative.dev/docs/typescript#using-custom-path-aliases-with-typescript, https://github.com/tleunen/babel-plugin-module-resolver) for tsconfig's compilerOptions.paths may help you. if it doesn't work, try
 
-// In react native, A babel plugin (https://reactnative.dev/docs/typescript#using-custom-path-aliases-with-typescript, https://github.com/tleunen/babel-plugin-module-resolver) for tsconfig's paths may help you. if it doesn't work, try 'npx react-native start --reset-cache' once and then 'yarn android' works.
+```sh
+npx react-native start --reset-cache
+```
+
+once and then
+
+    yarn android
+
+works.
 
 // or use a path start with './'
 

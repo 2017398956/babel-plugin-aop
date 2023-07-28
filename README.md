@@ -13,6 +13,7 @@ add babel-plugin-aop in '.babelrc'.
 
 在 .babelrc 文件中添加 babel-plugin-aop。
 ```js
+// use tsconfig's compilerOptions.paths:
 {
     ...
     "plugins": [
@@ -30,9 +31,8 @@ add babel-plugin-aop in '.babelrc'.
         ]
     ]
 }
-// A babel plugin for tsconfig paths may help you : https://github.com/tleunen/babel-plugin-module-resolver
-// https://reactnative.dev/docs/typescript#using-custom-path-aliases-with-typescript
-// if it doesn't work in react native, try 'npx react-native start --reset-cache' once and then 'yarn android' works.
+
+// In react native, A babel plugin (https://reactnative.dev/docs/typescript#using-custom-path-aliases-with-typescript, https://github.com/tleunen/babel-plugin-module-resolver) for tsconfig's paths may help you. if it doesn't work, try 'npx react-native start --reset-cache' once and then 'yarn android' works.
 
 // or use a path start with './'
 

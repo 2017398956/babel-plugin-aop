@@ -13,7 +13,7 @@ add babel-plugin-aop in '.babelrc'.
 
 在 .babelrc 文件中添加 babel-plugin-aop。
 
-### 1.use tsconfig's compilerOptions.paths:
+### when use tsconfig's compilerOptions.paths:
 
 ```js
 
@@ -43,12 +43,14 @@ npx react-native start --reset-cache
 
 once and then
 
-    yarn android
+```sh
+yarn android
+```
 
 works.
 
-// or use a path start with './'
-
+### or use a path start with './'
+```js
 {
     ...
     "plugins": [

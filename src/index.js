@@ -2,6 +2,30 @@ import { declare } from '@babel/helper-plugin-utils';
 
 const excludeAopPrefix = 'exclude aop:';
 
+function relativeDir(basePath, tempPath){
+    const path1s = basePath.split('/');
+    const path2s = tempPath.split('/');
+    let commIndex = 0;
+    for(let i = 0 ; i < path1s.length && i < path2s.length; i++){
+        if(path1s[i] === path2s[i]){
+        commIndex = i;
+        }else{
+        break;
+        }
+    }
+    let result = './';
+    for(let i = commIndex + 2; i < path1s.length; i++){
+        result += '../';
+    }
+    for(let i = commIndex + 1; i < path2s.length; i++){
+        result += path2s[i] + "/";
+    }
+    if(result.length > 2){
+        return result.substring(0, result.length - 1);
+    }
+    return result;
+}
+
 export default declare((api, options, dirname) => {
     api.assertVersion(7);
     return {
@@ -47,6 +71,9 @@ export default declare((api, options, dirname) => {
                                             }
                                         });
                                         if(insertIndex > -1){
+                                            if(replaceImport.path?.startsWith('./')){
+                                                replaceImport.replaceStr += ' \'' + relativeDir(state.filename.replace(state.cwd, "."), replaceImport.path) + '\';';
+                                            }
                                             path.node.body.splice(insertIndex, 0, api.template.ast(replaceImport.replaceStr));
                                         }
                                     }

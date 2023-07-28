@@ -17,12 +17,43 @@ add babel-plugin-aop in '.babelrc'.
     ...
     "plugins": [
         ...
-        ["aop", {"replaceImports": [{"component": "useTranslation", "module": "react-i18next", "replaceStr": "import useTranslation from '@/utils/i18next/i18n-wrapper';"}]}]
+        ["aop",
+            {"replaceImports":
+                [
+                    {
+                        "component":"useTranslation",
+                        "module": "react-i18next",
+                        "replaceStr": "import useTranslation from '@/utils/i18next/i18n-wrapper';"
+                    }
+                ]
+            }
+        ]
     ]
 }
 // A babel plugin for tsconfig paths may help you : https://github.com/tleunen/babel-plugin-module-resolver
 // https://reactnative.dev/docs/typescript#using-custom-path-aliases-with-typescript
 // if it doesn't work in react native, try 'npx react-native start --reset-cache' once and then 'yarn android' works.
+
+// or use a path start with './'
+
+{
+    ...
+    "plugins": [
+        ...
+        ["aop", 
+            {"replaceImports": 
+                [
+                    {
+                        "component": "useTranslation",
+                        "module": "react-i18next",
+                        "replaceStr": "import useTranslation from",
+                        "path": "./src/test/utils/i18next/i18n-wrapper"
+                    }
+                ]
+            }
+        ]
+    ]
+}
 ```
 ### component : 
 
